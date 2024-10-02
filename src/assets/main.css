@@ -1,0 +1,36 @@
+/* Reset browser default styling */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+/* Import tailwindcss */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* DM Sans Font Family */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+:root{
+  --text-color: #F9FAFB;
+}
+
+main{
+  background-image: url(../assets/hero_img.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-size: cover;
+
+  /* min-height: 100vh; */
+  /* min-width: 100; */
+  
+
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 40px; */
+}
