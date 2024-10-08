@@ -10,6 +10,8 @@ import Card from './Card.vue';
 import { useTranslator } from '@/stores/translator';
 import { computed } from 'vue';
 
+import { copyToClipboard } from '@/utils.js';
+
 const translator = useTranslator();
 
 const switchLanguages = () => {
@@ -78,7 +80,10 @@ const toTranslateLanguages = computed(() => {
             >
               <SoundMax class="w-7 h-5" />
             </button>
-            <button class="px-1 py-2 border border-2 border-gray-600 rounded-xl hover:bg-current">
+            <button
+              @click="copyToClipboard(translator.translation)"
+              class="px-1 py-2 border border-2 border-gray-600 rounded-xl hover:bg-current"
+             >
               <Copy class="w-7 h-5" />
             </button>
           </section>

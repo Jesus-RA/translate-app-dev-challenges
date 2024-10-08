@@ -10,6 +10,8 @@ import Card from './Card.vue';
 import { useTranslator } from '@/stores/translator';
 import { watch, onBeforeMount } from 'vue';
 
+import { copyToClipboard } from '@/utils.js';
+
 const translator = useTranslator();
 const MAX_CHARS = 500;
 
@@ -63,7 +65,10 @@ watch(() => translator.baseText, (newVal, oldVal) => {
                     >
                         <SoundMax class="w-7 h-5" />
                     </button>
-                    <button class="px-1 py-2 border border-2 border-gray-600 rounded-xl hover:bg-current">
+                    <button
+                        @click="copyToClipboard(translator.baseText)"
+                        class="px-1 py-2 border border-2 border-gray-600 rounded-xl hover:bg-current"
+                    >
                         <Copy class="w-7 h-5" />
                     </button>
                 </div>
