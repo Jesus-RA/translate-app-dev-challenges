@@ -30,14 +30,10 @@ watch(() => translator.baseText, (newVal, oldVal) => {
     <Card>
         <template #header>
             <section class="flex gap-x-1">
-                <!-- <button class="py-1 px-3 border-0 rounded-xl font-semi-bold text-gray-500" :class="{ 'bg-gray-600 text-slate-100': false }">
-                    Detect Language
-                </button> -->
-
                 <button
                     v-for="(language, code,) in translator.LANGUAGES"
                     :key="code"
-                    class="py-1 px-3 border-0 rounded-xl font-semi-bold text-gray-500" :class="{ 'bg-gray-500 text-slate-100': code === translator.fromLanguage }"
+                    class="py-1 px-3 border-0 rounded-xl font-semi-bold text-gray-500 hover:text-current" :class="{ 'bg-gray-500 text-slate-100': code === translator.fromLanguage }"
                     @click="translator.setFromLanguage(code)"
                 >
                     {{ language }}
@@ -61,10 +57,13 @@ watch(() => translator.baseText, (newVal, oldVal) => {
         <template #footer>
             <section class="flex justify-between items-center">
                 <div class="flex justify-between gap-x-3 h-min">
-                    <button class="px-1 py-2 border border-2 border-gray-600 rounded-xl">
+                    <button
+                        @click="translator.readOutLoud('source')"
+                        class="px-1 py-2 border border-2 border-gray-600 rounded-xl hover:bg-current"
+                    >
                         <SoundMax class="w-7 h-5" />
                     </button>
-                    <button class="px-1 py-2 border border-2 border-gray-600 rounded-xl">
+                    <button class="px-1 py-2 border border-2 border-gray-600 rounded-xl hover:bg-current">
                         <Copy class="w-7 h-5" />
                     </button>
                 </div>

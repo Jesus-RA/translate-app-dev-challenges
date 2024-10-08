@@ -45,6 +45,34 @@ export const useTranslator = defineStore('translator', () => {
         }
     };
 
+    const readOutLoud = async (selectedSource) => {
+        if(!'speechSynthesis' in window){
+            alert('Sorry, your browser does not support text to speech.');
+            return;
+        }
+
+        const sources = {
+            'source': {
+                text: baseText.value,
+                lang: fromLanguage.value,
+            },
+            'target': {
+                text: translation.value,
+                lang: toLanguage.value,
+            }
+        };
+
+        if(!Object.keys(sources).includes(selectedSource)){
+            console.error('Selected source should be one of these options: '  + Object.keys(sources).join(', '));
+            return;
+        }
+
+        const speaker = new SpeechSynthesisUtterance();
+        speaker.text = sources[selectedSource].text;
+        speaker.lang = sources[selectedSource].lang;
+        window.speechSynthesis.speak(speaker);
+    };
+
     const setFromLanguage = (language) => {
         fromLanguage.value = language;
     }
@@ -53,5 +81,5 @@ export const useTranslator = defineStore('translator', () => {
         toLanguage.value = language;
     }
 
-    return { LANGUAGES, fromLanguage, toLanguage, baseText, translation, loading, translate, setFromLanguage, setToLanguage };
+    return { LANGUAGES, fromLanguage, toLanguage, baseText, translation, loading, translate, setFromLanguage, setToLanguage, readOutLoud };
 });
