@@ -20,7 +20,7 @@ export const useTranslator = defineStore('translator', () => {
 
     const translate = async () => {
         try{
-
+            translation.value = 'Translating...';
             loading.value = true;
 
             const url = new URL('https://api.mymemory.translated.net/get');

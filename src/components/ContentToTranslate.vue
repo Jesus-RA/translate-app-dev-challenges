@@ -10,7 +10,7 @@ import Card from './Card.vue';
 import { useTranslator } from '@/stores/translator';
 import { watch, onBeforeMount } from 'vue';
 
-import { copyToClipboard } from '@/utils.js';
+import { copyToClipboard, debounce } from '@/utils.js';
 
 const translator = useTranslator();
 const MAX_CHARS = 500;
@@ -25,6 +25,10 @@ watch(() => translator.baseText, (newVal, oldVal) => {
         translator.baseText = translator.baseText.slice(0, 500);
     }
 });
+
+const translateWithDebounce = debounce(() => {
+    translator.translate();
+}, 1000)
 
 </script>
 
@@ -50,6 +54,7 @@ watch(() => translator.baseText, (newVal, oldVal) => {
             <section class="flex flex-col h-full">
                 <textarea
                     v-model="translator.baseText"
+                    @keyup="translateWithDebounce"
                     class="w-full h-full bg-transparent outline-none resize-none"
                 ></textarea>
                 <span class="text-gray-400 text-right text-xs">{{ translator.baseText.length }}/{{ MAX_CHARS }}</span>
