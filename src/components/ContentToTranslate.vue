@@ -28,7 +28,7 @@ watch(() => translator.baseText, (newVal, oldVal) => {
 
 const translateWithDebounce = debounce(() => {
     translator.translate();
-}, 1000)
+}, 500)
 
 </script>
 

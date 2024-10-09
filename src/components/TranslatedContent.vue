@@ -67,9 +67,17 @@ const toTranslateLanguages = computed(() => {
       </template>
 
       <template #body>
-        <p class="whitespace-break-spaces">
-          {{ translator.translation }}
-        </p>
+        <section>
+          <div v-if="translator.loading">
+            <span>Translating</span>
+            <p class="inline-flex items-end gap-x-1 ml-1" :class="{ 'loader': translator.loading }">
+              <span></span>
+              <span></span>
+              <span></span>
+            </p>
+          </div>
+          <p v-else class="whitespace-break-spaces inline-block">{{ translator.translation }}</p>
+        </section>
       </template>
 
       <template #footer>
@@ -90,3 +98,31 @@ const toTranslateLanguages = computed(() => {
       </template>
   </Card>
 </template>
+
+<style scoped>
+.loader span{
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  border-radius: 100%;
+  background-color: currentColor;
+}
+
+.loader span:first-child{
+  animation: loader .4s ease-in-out infinite alternate;
+}
+
+.loader span:nth-child(2){
+  animation: loader .4s ease-in-out infinite .2s alternate;
+}
+
+.loader span:last-child{
+  animation: loader .4s ease-in-out infinite .5s alternate;
+}
+
+@keyframes loader{
+  to{
+    transform: translateY(-7px);
+  }
+}
+</style>
