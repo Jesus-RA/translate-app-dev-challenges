@@ -1,5 +1,5 @@
 <template>
-    <article class="flex flex-col rounded-3xl h-80">
+    <article class="flex flex-col rounded-3xl h-80 sm:w-11/12 xl:w-1/3 grow lg:grow-0">
         <section class="header w-full py-4 px-5">
             <slot name="header">
                 Header
@@ -28,22 +28,8 @@
         color: var(--text-color);
         background-color: #212936cc;
 
-        /* height: 300px; */
-        width: 500px;
-
-        /* border-radius: 7px; */
-
-
-        color: beige;
-
         hr{
             border-color: #4D5562;
-        }
-
-        /* outline: 1px solid red; */
-        section{
-            /* outline: 1px solid red; */
-            
         }
     }
 </style>

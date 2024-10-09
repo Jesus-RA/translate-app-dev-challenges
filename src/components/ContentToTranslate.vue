@@ -31,7 +31,7 @@ watch(() => translator.baseText, (newVal, oldVal) => {
 <template>
     <Card>
         <template #header>
-            <section class="flex gap-x-1">
+            <section class="flex flex-wrap gap-x-1">
                 <button
                     v-for="(language, code,) in translator.LANGUAGES"
                     :key="code"
