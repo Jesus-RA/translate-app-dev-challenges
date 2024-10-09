@@ -19,6 +19,10 @@ export const useTranslator = defineStore('translator', () => {
     let loading = ref(false);
 
     const translate = async () => {
+        if(!baseText.value || !fromLanguage.value || !toLanguage.value){
+            return;
+        }
+
         try{
             translation.value = 'Translating...';
             loading.value = true;
